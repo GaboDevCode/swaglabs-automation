@@ -8,40 +8,51 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pages.saucedemo.LoginPage;
 
 
 public class TestLogin {
 
-
     WebDriver driver = MyWebDriverManager.getDriver();
+    LoginPage loginPage = new LoginPage(driver);
+
 
     @Given("que el usuario se encuentra en la pantalla de login")
     public void que_el_usuario_se_encuentra_en_la_pantalla_de_login() {
-            driver.get("https://www.saucedemo.com/");
+
+        loginPage.openPage();
     }
+
+
+    @Then("deberia ver el mensaje {string}")
+    public void deberiaVerElMensaje(String mensaje) {
+
+
+        Assert.assertEquals(
+                mensaje,
+                loginPage.getErrorMessage(mensaje));
+
+
+    }
+
     @When("inicia sesión con usuario {string} y password {string}")
-    public void inicia_sesión_con_usuario_y_password(String user, String password) {
+    public void inicia_sesión_con_usuario_y_password(String user, String password) throws InterruptedException {
 
-        WebElement usernameInput = driver.findElement(By.id("user-name"));
-        usernameInput.sendKeys(user);
-
-        WebElement passwordInput = driver.findElement(By.id("password"));
-        passwordInput.sendKeys(password);
-
-        WebElement loginButton = driver.findElement(By.id("login-button"));
-        loginButton.click();
-
-
+        loginPage.login(user, password);
     }
+
+
     @Then("debe visualizar el catálogo de productos")
-    public void debe_visualizar_el_catálogo_de_productos() {
+    public void debe_visualizar_el_catálogo_de_productos() throws InterruptedException {
 
-     WebElement invetoryContainer = driver.findElement(By.id("inventory_container"));
+        WebElement invetoryContainer = driver.findElement(By.id("inventory_container"));
 
-     Assert.assertTrue(invetoryContainer.isDisplayed());
+        Assert.assertTrue(invetoryContainer.isDisplayed());
 
     }
-
-
-
 }
+
+
+
+
+
