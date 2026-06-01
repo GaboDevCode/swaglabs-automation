@@ -5,18 +5,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import utils.FactoryWebElements;
 
+import java.util.List;
+
 
 public class HomePageDemoBlaze {
 
-    private WebDriver driver;
+    private static WebDriver driver;
 
-    public HomePageDemoBlaze(WebDriver driver){
+
+    public HomePageDemoBlaze(WebDriver driver) {
 
         this.driver = driver;
 
     }
 
-    public void  openPage(){
+    public void openPage() {
         driver.get("https://www.demoblaze.com");
 
     }
@@ -30,5 +33,21 @@ public class HomePageDemoBlaze {
 
         return FactoryWebElements.initialWithXpath(driver, categoryLocator);
     }
+
+
+
+    public void seleccionarCategoria(String categoria) {
+        getCategoria(categoria).click();
+
+    }
+
+    public int getProductsCount() {
+        List<WebElement> products = FactoryWebElements.initialElementsWithXpath(
+                driver,
+                "//div[@class='card-block']"
+        );
+        return products.size();
+    }
+
 
 }
