@@ -20,6 +20,7 @@ public class DemoBlazeDefinitions {
     @Given("que el usuario se encuentra en la página principal")
     public void que_el_usuario_se_encuentra_en_la_pagina_principal() {
         demoBlaze.openPage();
+
     }
 
     @Then("debe visualizar la categoria {string}")
@@ -47,6 +48,8 @@ public class DemoBlazeDefinitions {
         );
 
     }
+
+
 
 
 }

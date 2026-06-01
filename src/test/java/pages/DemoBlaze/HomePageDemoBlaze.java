@@ -10,16 +10,15 @@ import java.util.List;
 
 public class HomePageDemoBlaze {
 
-    private static WebDriver driver;
+    private WebDriver driver;
 
-
-    public HomePageDemoBlaze(WebDriver driver) {
+    public HomePageDemoBlaze(WebDriver driver){
 
         this.driver = driver;
 
     }
 
-    public void openPage() {
+    public void  openPage(){
         driver.get("https://www.demoblaze.com");
 
     }
@@ -35,8 +34,7 @@ public class HomePageDemoBlaze {
     }
 
 
-
-    public void seleccionarCategoria(String categoria) {
+    public void selectCategory(String categoria) {
         getCategoria(categoria).click();
 
     }
@@ -47,6 +45,16 @@ public class HomePageDemoBlaze {
                 "//div[@class='card-block']"
         );
         return products.size();
+    }
+
+
+    public void selectProductCategory(String nameProduct) {
+        By productLocator = By.xpath("//a[contains(@class, 'hrefch') and normalize-space(text())='" + nameProduct + "']");
+
+        WebElement product = FactoryWebElements.initialWithXpath(driver, productLocator);
+
+        product.click();
+
     }
 
 
