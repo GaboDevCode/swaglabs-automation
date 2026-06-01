@@ -21,6 +21,7 @@ public class TestLogin {
     public void que_el_usuario_se_encuentra_en_la_pantalla_de_login() {
 
         loginPage.openPage();
+
     }
 
 
