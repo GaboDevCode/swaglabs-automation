@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class FactoryWebElements {
 
@@ -24,4 +25,23 @@ public class FactoryWebElements {
         }
         return  element;
     }
+
+
+    public static List <WebElement> initialElementsWithXpath(WebDriver driver, String xpath) {
+
+        List<WebElement>  elements = null;
+
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(xpath)));
+            return elements;
+        } catch (Exception exception) {
+            Assert.assertTrue("Elementos Web no encontrado <<" + exception + ">>", false);
+        }
+        return  elements;
+    }
 }
+
+
+
+
