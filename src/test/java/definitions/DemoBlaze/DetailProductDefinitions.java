@@ -4,10 +4,13 @@ import configs.MyWebDriverManager;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.DemoBlaze.HomePageDemoBlaze;
 import pages.DemoBlaze.ProductPageDemoBlaze;
+import utils.FactoryWebElements;
 
 import java.time.Duration;
 
@@ -29,7 +32,7 @@ public class DetailProductDefinitions {
 
         homePage.selectCategory(category);
 
-        try{
+        try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         } catch (Exception e) {
@@ -59,8 +62,8 @@ public class DetailProductDefinitions {
         Assert.assertTrue("❌ Product description does not contain expected text",
                 actualDescription.contains(expectedDescription));
 
-
-
     }
+
+
 }
 

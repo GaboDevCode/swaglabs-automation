@@ -15,7 +15,6 @@ public class DemoBlazeDefinitions {
     WebDriver driver = MyWebDriverManager.getDriver();
     HomePageDemoBlaze demoBlaze = new HomePageDemoBlaze(driver);
 
-    private final By homeDemoBlaze = By.xpath("");
 
     @Given("que el usuario se encuentra en la página principal")
     public void que_el_usuario_se_encuentra_en_la_pagina_principal() {

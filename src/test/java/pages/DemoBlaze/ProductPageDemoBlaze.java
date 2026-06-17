@@ -1,5 +1,6 @@
 package pages.DemoBlaze;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -50,4 +51,38 @@ public class ProductPageDemoBlaze {
     }
 
 
-}
+
+
+    public WebElement selectedButton(String text) {
+
+        By selectButton = By.xpath(
+                "//a[contains(@class,'btn') and normalize-space()='" + text + "']"
+        );
+
+        return FactoryWebElements.initialWithXpath(driver, selectButton);
+    }
+
+    public void addToCart() {
+
+        selectedButton("Add to cart").click();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
+        wait.until(ExpectedConditions.alertIsPresent()).accept();
+
+    }
+
+
+    public WebElement selectButtonCart(){
+
+        By selectedButtonCart = By.xpath("//*[@id=\"cartur\"]");
+
+        return  FactoryWebElements.initialWithXpath(driver, selectedButtonCart);
+
+
+    }
+    }
+
+
+
+
