@@ -1,4 +1,4 @@
-package definitions;
+package definitions.SauceDemo;
 
 import configs.MyWebDriverManager;
 import io.cucumber.java.en.Given;
