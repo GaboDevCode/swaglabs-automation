@@ -4,16 +4,9 @@ Framework de automatización de pruebas E2E para [Swag Labs](https://www.saucede
 
 ---
 
-## 📋 Tabla de contenidos
+## 🎬 Demo
 
-- [Descripción](#-descripción)
-- [Tecnologías](#-tecnologías)
-- [Prerrequisitos](#-prerrequisitos)
-- [Estructura del proyecto](#-estructura-del-proyecto)
-- [Instalación](#-instalación)
-- [Ejecución de pruebas](#-ejecución-de-pruebas)
-- [Convenciones](#-convenciones)
-- [Roadmap](#-roadmap)
+![Automation Demo](docs/AutomationDemo.gif)
 
 ---
 
@@ -111,16 +104,6 @@ mvn test -Dcucumber.filter.tags="@login"
 - Las clases Java siguen la nomenclatura **PascalCase** para clases y **camelCase** para métodos.
 - Se aplica el patrón **Page Object Model (POM)** para mantener la separación entre la lógica de UI y los step definitions.
 
----
-
-## 🗺️ Roadmap
-
-- [ ] Escenarios de login (usuario válido, inválido, bloqueado)
-- [ ] Escenarios de catálogo de productos (filtros, detalle)
-- [ ] Escenarios de carrito de compras
-- [ ] Flujo completo de checkout
-- [ ] Integración con reportes (Allure o Cucumber HTML Report)
-- [ ] Ejecución en CI/CD (GitHub Actions)
 
 ---
 
