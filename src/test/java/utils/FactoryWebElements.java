@@ -10,21 +10,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class FactoryWebElements {
+    public class FactoryWebElements {
 
-    public static WebElement initialWithXpath(WebDriver driver, By locator) {
+        public static WebElement initialWithXpath(WebDriver driver, By locator) {
 
-        WebElement element = null;
+            WebElement element = null;
 
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-            return element;
-        } catch (Exception exception) {
-            Assert.assertTrue("Elemento Web no encontrado <<" + exception + ">>", false);
+            try {
+                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+                element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+                return element;
+            } catch (Exception exception) {
+                Assert.assertTrue("Elemento Web no encontrado <<" + exception + ">>", false);
+            }
+            return  element;
         }
-        return  element;
-    }
 
 
     public static List <WebElement> initialElementsWithXpath(WebDriver driver, String xpath) {

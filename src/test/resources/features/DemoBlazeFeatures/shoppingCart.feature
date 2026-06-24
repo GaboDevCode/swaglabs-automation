@@ -19,3 +19,16 @@ Feature: Carrito de compras en DemoBlaze
       | producto          | categoria | precio |
       | Sony vaio i5      | Laptops   | 790    |
       | Samsung galaxy s6 | Phones    | 360    |
+
+
+  @escenario_CriterioAc2
+
+  Scenario: El total del carrito coincide con la suma de los productos
+
+    Given que el usuario agrego los siguientes productos al carrito:
+      | producto          | categoria | precio |
+      | Sony vaio i5    | Laptops   |   790    |
+      | Samsung galaxy s6 | Phones    | 360    |
+    Then debe visualizar que la suma de los productos coincida con el total esperado "1150"
+
+

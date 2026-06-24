@@ -4,9 +4,11 @@ import configs.MyWebDriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.it.Ma;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.DemoBlaze.CartPageDemoBlaze;
@@ -15,6 +17,7 @@ import pages.DemoBlaze.ProductPageDemoBlaze;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Map;
 
 public class ProductCartDefinitions {
 
@@ -80,5 +83,53 @@ public class ProductCartDefinitions {
         );
 
     }
+
+
+    // escenario  CriterioAc2
+
+    @Given("que el usuario agrego los siguientes productos al carrito:")
+    public void que_el_usuario_agrego_los_siguientes_productos_al_carrito(List<Map<String, String>> products) {
+
+
+
+        for (Map<String, String> product : products) {
+
+            String category = product.get("categoria");
+            String nameProduct = product.get("producto");
+
+            demoBlaze.openPage();
+            demoBlaze.selectCategory(category);
+            demoBlaze.selectProductCategory(nameProduct);
+            productPage.addToCart();
+
+        }
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        productPage.selectButtonCart().click();
+
+
+
+    }
+
+    @Then("debe visualizar que la suma de los productos coincida con el total esperado {string}")
+    public void debe_visualizar_que_la_suma_de_los_productos_coincida_con_el_total_esperado(String total) {
+
+
+
+
+        String getTotalCart = cartDemoBlaze.getPriceCart().getText().trim();
+        System.out.println("Total esperado "+total);
+        System.out.println("Total obtenido"+getTotalCart);
+
+        int expectedTotal = Integer.parseInt(total);
+        int displayedTotal = Integer.parseInt(getTotalCart);
+
+        Assert.assertEquals("El total del carrito no coincide con el esperado", expectedTotal, displayedTotal);
+
+        System.out.println("✅ Validación OK: el total coincide");
+
+
+    }
+
 
 }

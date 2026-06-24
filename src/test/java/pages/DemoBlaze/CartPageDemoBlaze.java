@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.FactoryWebElements;
 
 import java.time.Duration;
 import java.util.List;
@@ -16,7 +17,7 @@ public class CartPageDemoBlaze {
     private WebDriver driver;
 
 
-    public CartPageDemoBlaze(WebDriver driver){
+    public CartPageDemoBlaze(WebDriver driver) {
 
         this.driver = driver;
     }
@@ -54,4 +55,11 @@ public class CartPageDemoBlaze {
     }
 
 
+    public WebElement getPriceCart() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebElement price = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.id("totalp")));
+        return price;
+    }
 }

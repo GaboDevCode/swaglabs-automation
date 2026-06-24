@@ -17,8 +17,12 @@ public class MyWebDriverManager {
         if (driver == null) {
 
             WebDriverManager.chromedriver()
-                    .driverVersion("147.0.7727.101")
+                    .driverVersion("149.0.7827.155")
                     .setup();
+
+            System.out.println(
+                    WebDriverManager.chromedriver().getDownloadedDriverPath()
+            );
 
             ChromeOptions options = new ChromeOptions();
 

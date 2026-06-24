@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/DemoBlazeFeatures",
         glue = "definitions",
         publish = true
+
 )
 public class DemoBlazeRunnerTest {
 
