@@ -17,7 +17,7 @@ public class ProductPageDemoBlaze {
     private final By priceProduct = By.xpath("//h3[@class='price-container']");
     private final By productDescription = By.xpath("//*[@id='more-information']/p");
 
-    private  WebDriver driver;
+    private WebDriver driver;
 
     public ProductPageDemoBlaze(WebDriver driver) {
 
@@ -51,8 +51,6 @@ public class ProductPageDemoBlaze {
     }
 
 
-
-
     public WebElement selectedButton(String text) {
 
         By selectButton = By.xpath(
@@ -61,6 +59,7 @@ public class ProductPageDemoBlaze {
 
         return FactoryWebElements.initialWithXpath(driver, selectButton);
     }
+
 
     public void addToCart() {
 
@@ -73,18 +72,23 @@ public class ProductPageDemoBlaze {
     }
 
 
-    public WebElement selectButtonCart(){
+    public WebElement selectButtonCart() {
 
         By selectedButtonCart = By.xpath("//*[@id=\"cartur\"]");
 
-        return  FactoryWebElements.initialWithXpath(driver, selectedButtonCart);
-
-
-
-
+        return FactoryWebElements.initialWithXpath(driver, selectedButtonCart);
 
     }
+
+    public WebElement selectedButtonPlaceOrder(){
+
+
+        By selectedButton = By.xpath("//button[contains(normalize-space(), 'Place Order')]");
+
+        return  FactoryWebElements.initialWithXpath(driver, selectedButton);
+
     }
+}
 
 
 

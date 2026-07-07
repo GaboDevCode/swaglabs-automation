@@ -4,12 +4,8 @@ import configs.MyWebDriverManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.it.Ma;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.DemoBlaze.CartPageDemoBlaze;
 import pages.DemoBlaze.HomePageDemoBlaze;
@@ -91,7 +87,6 @@ public class ProductCartDefinitions {
     public void que_el_usuario_agrego_los_siguientes_productos_al_carrito(List<Map<String, String>> products) {
 
 
-
         for (Map<String, String> product : products) {
 
             String category = product.get("categoria");
@@ -108,18 +103,15 @@ public class ProductCartDefinitions {
         productPage.selectButtonCart().click();
 
 
-
     }
 
     @Then("debe visualizar que la suma de los productos coincida con el total esperado {string}")
     public void debe_visualizar_que_la_suma_de_los_productos_coincida_con_el_total_esperado(String total) {
 
 
-
-
         String getTotalCart = cartDemoBlaze.getPriceCart().getText().trim();
-        System.out.println("Total esperado "+total);
-        System.out.println("Total obtenido"+getTotalCart);
+        System.out.println("Total esperado " + total);
+        System.out.println("Total obtenido" + getTotalCart);
 
         int expectedTotal = Integer.parseInt(total);
         int displayedTotal = Integer.parseInt(getTotalCart);
@@ -127,6 +119,50 @@ public class ProductCartDefinitions {
         Assert.assertEquals("El total del carrito no coincide con el esperado", expectedTotal, displayedTotal);
 
         System.out.println("✅ Validación OK: el total coincide");
+
+
+    }
+
+
+    /**
+     * escenario-CriterioAc3
+     */
+    @Given("que el usuario agrego el siguiente producto al carrito:")
+    public void que_el_usuario_agrego_el_siguiente_producto_al_carrito(List<Map<String, String>> product) {
+
+        String category = product.get(0).get("categoria");
+        String nameProduct = product.get(0).get("producto");
+
+        demoBlaze.selectCategory(category);
+        demoBlaze.selectProductCategory(nameProduct);
+        productPage.addToCart();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        productPage.selectButtonCart().click();
+    }
+
+    @Given("presiona el boton de compra {string}")
+    public void presiona_el_boton_de_compra(String string) {
+
+
+       productPage.selectedButtonPlaceOrder().click();
+
+
+
+    }
+
+    @Then("debe visualizar que el formulario muestre los siguientes campos:")
+    public void debe_visualizar_que_el_formulario_muestre_los_siguientes_campos(io.cucumber.datatable.DataTable dataTable) {
+
+        List<String> camposEsperados = dataTable.asList(String.class);
+
+        for (String campo : camposEsperados) {
+            Assert.assertTrue(
+                    "El campo " + campo + " no se encuentra visible",
+                    cartDemoBlaze.getDetailForms(campo)
+            );
+        }
+
 
 
     }

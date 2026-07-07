@@ -1,5 +1,6 @@
 package pages.DemoBlaze;
 
+import io.cucumber.java.en.Given;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import utils.FactoryWebElements;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -62,4 +64,32 @@ public class CartPageDemoBlaze {
                 ExpectedConditions.visibilityOfElementLocated(By.id("totalp")));
         return price;
     }
+
+
+    public boolean getDetailForms(String nameCamp) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        Map<String, By> camp = Map.of(
+                "Name", By.id("name"),
+                "Country", By.id("country"),
+                "City", By.id("city"),
+                "Credit Card", By.id("card"),
+                "Month", By.id("month"),
+                "Year", By.id("year")
+        );
+        By locator = camp.get(nameCamp);
+
+        if (locator == null) {
+            throw new IllegalArgumentException(
+                    "No existe un locator para el campo: " + nameCamp
+            );
+        }
+
+        return   wait.until(
+                ExpectedConditions.visibilityOfElementLocated(locator)
+        ).isDisplayed();
+
+
+    }
+
+
 }

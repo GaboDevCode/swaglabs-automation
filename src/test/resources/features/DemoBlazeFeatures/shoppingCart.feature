@@ -32,3 +32,18 @@ Feature: Carrito de compras en DemoBlaze
     Then debe visualizar que la suma de los productos coincida con el total esperado "1150"
 
 
+
+ @escenario_CriterioAc3
+ Scenario: Al presionar el boton Place Order se debe mostrar el formulario de compra
+
+   Given que el usuario agrego el siguiente producto al carrito:
+     | producto     | categoria | precio |
+     | Sony vaio i5 | Laptops   | 790    |
+   And presiona el boton de compra "Place Order"
+   Then debe visualizar que el formulario muestre los siguientes campos:
+     | Name        |
+     | Country     |
+     | City        |
+     | Credit Card |
+     | Month       |
+     | Year        |
