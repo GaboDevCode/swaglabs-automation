@@ -1,6 +1,7 @@
 package utils;
 
 import org.junit.Assert;
+import org.junit.platform.commons.function.Try;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -39,6 +40,22 @@ import java.util.List;
             Assert.assertTrue("Elementos Web no encontrado <<" + exception + ">>", false);
         }
         return  elements;
+    }
+
+
+    public  static WebElement  initialClickableWithXpath(WebDriver driver, By locator){
+
+        WebElement element = null;
+
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+            element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+            return element;
+        } catch(Exception exception){
+            Assert.assertTrue("Elemento Web no encontrado <<" + exception + ">>", false);
+
+        }
+        return element;
     }
 }
 

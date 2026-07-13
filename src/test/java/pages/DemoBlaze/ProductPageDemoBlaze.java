@@ -42,7 +42,7 @@ public class ProductPageDemoBlaze {
         if (m.find()) {
             return m.group();
         }
-        return fullText; //
+        return fullText;
     }
 
 

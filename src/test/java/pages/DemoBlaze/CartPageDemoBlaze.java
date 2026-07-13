@@ -66,30 +66,4 @@ public class CartPageDemoBlaze {
     }
 
 
-    public boolean getDetailForms(String nameCamp) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        Map<String, By> camp = Map.of(
-                "Name", By.id("name"),
-                "Country", By.id("country"),
-                "City", By.id("city"),
-                "Credit Card", By.id("card"),
-                "Month", By.id("month"),
-                "Year", By.id("year")
-        );
-        By locator = camp.get(nameCamp);
-
-        if (locator == null) {
-            throw new IllegalArgumentException(
-                    "No existe un locator para el campo: " + nameCamp
-            );
-        }
-
-        return   wait.until(
-                ExpectedConditions.visibilityOfElementLocated(locator)
-        ).isDisplayed();
-
-
-    }
-
-
 }

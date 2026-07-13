@@ -47,3 +47,18 @@ Feature: Carrito de compras en DemoBlaze
      | Credit Card |
      | Month       |
      | Year        |
+
+
+
+
+  @escenario_CriterioAc4
+
+
+  Scenario: Usuario realiza una compra exitosa
+
+    Given que el usuario selecciona el producto "Samsung galaxy s6" de la categoria "Phones" y lo agrega al carrito
+    When el usuario registra sus datos en el formulario de compra
+      | name    | country | city   | creditCard     | month | year |
+      | Gabriel | Mexico  | Mexico | 56271827910291 | 11    | 2040 |
+    And confirma la compra
+    Then deberia ver el mensaje de confirmacion "Thank you for your purchase!"

@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.DemoBlaze.CartPageDemoBlaze;
+import pages.DemoBlaze.CheckoutPageDemoBlaze;
 import pages.DemoBlaze.HomePageDemoBlaze;
 import pages.DemoBlaze.ProductPageDemoBlaze;
 
@@ -22,6 +23,7 @@ public class ProductCartDefinitions {
     HomePageDemoBlaze demoBlaze = new HomePageDemoBlaze(driver);
     ProductPageDemoBlaze productPage = new ProductPageDemoBlaze(driver);
     CartPageDemoBlaze cartDemoBlaze = new CartPageDemoBlaze(driver);
+    CheckoutPageDemoBlaze checkout = new CheckoutPageDemoBlaze(driver);
 
 
     @Given("que el usuario se encuentra en la página principal de DemoBlaze")
@@ -136,17 +138,16 @@ public class ProductCartDefinitions {
         demoBlaze.selectCategory(category);
         demoBlaze.selectProductCategory(nameProduct);
         productPage.addToCart();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         productPage.selectButtonCart().click();
+
+
     }
 
     @Given("presiona el boton de compra {string}")
     public void presiona_el_boton_de_compra(String string) {
 
 
-       productPage.selectedButtonPlaceOrder().click();
-
+        productPage.selectedButtonPlaceOrder().click();
 
 
     }
@@ -159,12 +160,9 @@ public class ProductCartDefinitions {
         for (String campo : camposEsperados) {
             Assert.assertTrue(
                     "El campo " + campo + " no se encuentra visible",
-                    cartDemoBlaze.getDetailForms(campo)
+                    checkout.getDetailField(campo)
             );
         }
-
-
-
     }
 
 
