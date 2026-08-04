@@ -10,11 +10,12 @@ import java.util.Map;
 
 public class MyWebDriverManager {
 
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
 
     public static WebDriver getDriver() {
 
-        if (driver == null) {
+        if (driver.get() == null) {
 
             WebDriverManager.chromedriver()
                     .driverVersion("149.0.7827.155")
@@ -39,20 +40,19 @@ public class MyWebDriverManager {
 
             options.setExperimentalOption("prefs", prefs);
 
-            driver = new ChromeDriver(options);
-
-
-            driver.manage().window().maximize();
+           WebDriver  newDriver = new ChromeDriver(options);
+           newDriver.manage().window().maximize();
+           driver.set(newDriver);
         }
 
-        return driver;
+        return driver.get();
     }
 
     public static void quitDriver() {
 
-        if (driver != null) {
-            driver.quit();
-            driver = null;
+        if (driver.get() != null){
+            driver.get().quit();
+            driver.remove();
         }
     }
 }

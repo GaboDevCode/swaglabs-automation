@@ -1,6 +1,7 @@
 package definitions.DemoBlaze;
 
 import configs.MyWebDriverManager;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,11 +16,19 @@ import java.util.Map;
 
 public class CheckoutStepsDefinitions {
 
-    WebDriver driver = MyWebDriverManager.getDriver();
-    HomePageDemoBlaze demoBlaze = new HomePageDemoBlaze(driver);
-    ProductPageDemoBlaze productPage = new ProductPageDemoBlaze(driver);
-    CheckoutPageDemoBlaze checkout = new CheckoutPageDemoBlaze(driver);
 
+    private WebDriver driver;
+    private HomePageDemoBlaze demoBlaze;
+    private ProductPageDemoBlaze productPage;
+    private CheckoutPageDemoBlaze checkout;
+
+    @Before
+    public void initPages() {
+        driver = MyWebDriverManager.getDriver();
+        demoBlaze = new HomePageDemoBlaze(driver);
+        productPage = new ProductPageDemoBlaze(driver);
+        checkout = new CheckoutPageDemoBlaze(driver);
+    }
 
     @Given("que el usuario selecciona el producto {string} de la categoria {string} y lo agrega al carrito")
     public void que_el_usuario_selecciona_el_producto_de_la_categoria_y_lo_agrega_al_carrito(String nameProduct, String category) {

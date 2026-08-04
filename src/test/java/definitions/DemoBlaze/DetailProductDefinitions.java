@@ -4,13 +4,10 @@ import configs.MyWebDriverManager;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
+import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.DemoBlaze.HomePageDemoBlaze;
 import pages.DemoBlaze.ProductPageDemoBlaze;
-import utils.FactoryWebElements;
 
 import java.time.Duration;
 
@@ -20,8 +17,10 @@ public class DetailProductDefinitions {
     private HomePageDemoBlaze homePage;
     private ProductPageDemoBlaze productPage;
 
-    public DetailProductDefinitions() {
-        this.driver = MyWebDriverManager.getDriver(); // Obtiene el driver del Hook
+
+    @Before
+    public void initPages() {
+        this.driver = MyWebDriverManager.getDriver();
         this.homePage = new HomePageDemoBlaze(driver);
         this.productPage = new ProductPageDemoBlaze(driver);
     }
@@ -31,13 +30,6 @@ public class DetailProductDefinitions {
     public void selecciona_un_de_la_categoria(String product, String category) {
 
         homePage.selectCategory(category);
-
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         homePage.selectProductCategory(product);
 

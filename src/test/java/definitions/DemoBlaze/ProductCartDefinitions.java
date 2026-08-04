@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.DemoBlaze.CartPageDemoBlaze;
@@ -19,11 +20,21 @@ import java.util.Map;
 public class ProductCartDefinitions {
 
 
-    WebDriver driver = MyWebDriverManager.getDriver();
-    HomePageDemoBlaze demoBlaze = new HomePageDemoBlaze(driver);
-    ProductPageDemoBlaze productPage = new ProductPageDemoBlaze(driver);
-    CartPageDemoBlaze cartDemoBlaze = new CartPageDemoBlaze(driver);
-    CheckoutPageDemoBlaze checkout = new CheckoutPageDemoBlaze(driver);
+    private WebDriver driver;
+    private HomePageDemoBlaze demoBlaze;
+    private ProductPageDemoBlaze productPage;
+    private CartPageDemoBlaze cartDemoBlaze;
+    private CheckoutPageDemoBlaze checkout;
+
+    @Before
+    public void initPages() {
+        driver = MyWebDriverManager.getDriver();
+        demoBlaze = new HomePageDemoBlaze(driver);
+        productPage = new ProductPageDemoBlaze(driver);
+        cartDemoBlaze = new CartPageDemoBlaze(driver);
+        checkout = new CheckoutPageDemoBlaze(driver);
+    }
+
 
 
     @Given("que el usuario se encuentra en la página principal de DemoBlaze")

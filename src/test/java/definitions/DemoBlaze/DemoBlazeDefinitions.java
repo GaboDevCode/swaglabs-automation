@@ -1,5 +1,7 @@
 package definitions.DemoBlaze;
+
 import configs.MyWebDriverManager;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,8 +14,14 @@ import utils.FactoryWebElements;
 
 public class DemoBlazeDefinitions {
 
-    WebDriver driver = MyWebDriverManager.getDriver();
-    HomePageDemoBlaze demoBlaze = new HomePageDemoBlaze(driver);
+
+    private HomePageDemoBlaze demoBlaze;
+
+    @Before
+    public void initPages() {
+        WebDriver driver = MyWebDriverManager.getDriver();
+        demoBlaze = new HomePageDemoBlaze(driver);
+    }
 
 
     @Given("que el usuario se encuentra en la página principal")
@@ -30,7 +38,7 @@ public class DemoBlazeDefinitions {
 
 
     @When("el usuario selecciona una {string}")
-    public void el_usuario_selecciona_una(String categoria){
+    public void el_usuario_selecciona_una(String categoria) {
 
         demoBlaze.getCategoria(categoria);
 
@@ -47,8 +55,6 @@ public class DemoBlazeDefinitions {
         );
 
     }
-
-
 
 
 }
